@@ -188,13 +188,15 @@ function search(term) {
   });
 }
 
+// 오늘이 순례 기간 내일 때만 "오늘의 지향" 카드를 노출
+let SHOW_TODAY = false;
+
 function clearSearch() {
   $("#search-results").hidden = true;
   $("#search-results").innerHTML = "";
   $(".day-tabs-wrap").style.display = "";
   $("#day-detail").style.display = "";
-  const t = getToday();
-  $("#today").hidden = !dayByDate[t];
+  $("#today").hidden = !SHOW_TODAY;
 }
 
 /* ---------- 오늘 날짜 결정 ---------- */
@@ -220,6 +222,7 @@ function init() {
     String(now.getDate()).padStart(2, "0");
   const todayStr = getToday();
   const isInPeriod = !!dayByDate[local];
+  SHOW_TODAY = isInPeriod;
 
   buildTabs(local);
   if (isInPeriod) renderToday(local); else $("#today").hidden = true;
