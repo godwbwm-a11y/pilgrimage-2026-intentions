@@ -1,0 +1,302 @@
+:root {
+  --bg: #f6f3ec;
+  --paper: #fffdf9;
+  --ink: #2b2622;
+  --muted: #7a7066;
+  --line: #e4ddd0;
+  --gold: #b08b4f;
+  --gold-soft: #f3ead7;
+  --fatima: #2f5d8a;     /* 파티마 - 푸른 */
+  --fatima-soft: #e7eef6;
+  --lourdes: #3f7e62;    /* 루르드 - 초록 */
+  --lourdes-soft: #e6f1ea;
+  --rosary: #8a4f86;     /* 묵주기도 - 자주 */
+  --rosary-soft: #f1e8f1;
+  --shadow: 0 6px 24px rgba(60, 48, 30, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Noto Sans KR", system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 18px; }
+
+/* Header */
+.site-header {
+  background:
+    radial-gradient(1200px 200px at 50% -40px, rgba(176,139,79,0.18), transparent 70%),
+    linear-gradient(180deg, #2b2622, #3a322a);
+  color: #f6f0e4;
+  text-align: center;
+  padding: 38px 0 30px;
+  border-bottom: 3px solid var(--gold);
+}
+.site-header .eyebrow {
+  letter-spacing: 0.32em;
+  font-size: 12px;
+  color: var(--gold);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+.site-header h1 {
+  font-family: "Nanum Myeongjo", serif;
+  font-weight: 800;
+  font-size: clamp(28px, 7vw, 40px);
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+}
+.site-header .subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #d9cfba;
+  line-height: 1.7;
+}
+
+/* Search */
+.search-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  box-shadow: var(--shadow);
+}
+.search-box:focus-within { border-color: var(--gold); }
+.search-icon { font-size: 15px; opacity: 0.6; }
+#search {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+}
+.search-clear {
+  border: none;
+  background: var(--gold-soft);
+  color: var(--gold);
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+}
+
+main { padding: 20px 0 40px; }
+
+/* Today card */
+.today-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--gold);
+  border-radius: 16px;
+  padding: 18px 18px 6px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+.today-card .today-label {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+/* Day tabs */
+.day-tabs-wrap { margin-bottom: 18px; }
+.day-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.day-tab {
+  flex: 0 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 12px;
+  text-align: center;
+  cursor: pointer;
+  min-width: 62px;
+  transition: all 0.15s;
+  font-family: inherit;
+  color: var(--ink);
+}
+.day-tab:hover { border-color: var(--gold); }
+.day-tab .d-date { font-weight: 700; font-size: 15px; display: block; }
+.day-tab .d-region { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+.day-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.day-tab.active .d-region { color: #d9cfba; }
+.day-tab.is-today::after {
+  content: "오늘";
+  display: block;
+  font-size: 9px;
+  color: var(--gold);
+  font-weight: 700;
+  margin-top: 2px;
+}
+.day-tab.active.is-today::after { color: var(--gold-soft); }
+
+/* Day detail */
+.day-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.day-head h2 {
+  font-family: "Nanum Myeongjo", serif;
+  font-size: 24px;
+  margin: 0;
+}
+.day-head .weekday { color: var(--muted); font-weight: 500; }
+.day-theme {
+  color: var(--gold);
+  font-size: 14px;
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+
+/* Mass / Rosary blocks */
+.block {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.block-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+.block-title .tag {
+  font-size: 11px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.block-meta { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+
+.block.mass { border-left: 4px solid var(--gold); }
+.block.mass.fatima .badge-mass { background: var(--fatima-soft); color: var(--fatima); }
+.block.mass.lourdes .badge-mass { background: var(--lourdes-soft); color: var(--lourdes); }
+.badge-mass { background: var(--gold-soft); color: var(--gold); }
+.block.rosary { border-left: 4px solid var(--rosary); }
+.block.rosary .tag { background: var(--rosary-soft); color: var(--rosary); }
+
+/* Intention list */
+.intentions { list-style: none; margin: 0; padding: 0; }
+.intention {
+  padding: 11px 0;
+  border-top: 1px dashed var(--line);
+}
+.intention:first-child { border-top: none; }
+.intention .offerer {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.intention .offerer::before { content: "🕯 "; }
+.intention .text { font-size: 15px; color: var(--ink); }
+.intention mark { background: #fdeeb3; color: inherit; padding: 0 2px; border-radius: 3px; }
+
+.empty-note {
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+  margin: 4px 0 0;
+}
+
+/* Search results */
+.search-results { margin-bottom: 24px; }
+.search-results h2 {
+  font-family: "Nanum Myeongjo", serif;
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+.search-results .result-count { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+.result-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.result-card .r-text { font-size: 15px; margin: 0 0 10px; }
+.result-card .r-offerer { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+.result-card .r-offerer::before { content: "🕯 "; }
+.sched-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+.sched-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 11px;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12px;
+}
+.sched-chip.mass { background: var(--gold-soft); border-color: transparent; color: #7d5e23; }
+.sched-chip.rosary { background: var(--rosary-soft); border-color: transparent; color: var(--rosary); }
+.sched-chip .lbl { font-weight: 700; }
+.no-results { color: var(--muted); padding: 10px 0; }
+
+/* Footer */
+.site-footer {
+  background: #2b2622;
+  color: #cbbfaf;
+  text-align: center;
+  padding: 26px 0;
+  margin-top: 20px;
+}
+.site-footer p { margin: 0 0 6px; font-size: 14px; }
+.site-footer .small { font-size: 12px; color: #948a78; }
+
+@media (max-width: 480px) {
+  .site-header { padding: 28px 0 24px; }
+  .block { padding: 14px 15px; }
+}
